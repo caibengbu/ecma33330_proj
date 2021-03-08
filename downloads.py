@@ -1,6 +1,7 @@
 import urllib.request
 import sys
 from zipfile import ZipFile
+import zlib
 import os
 import shutil
 
@@ -30,28 +31,42 @@ def months_inteval(start_year, start_month, end_year, end_month):
         return months_in_start_year + months_in_between + months_in_end_year
 
 theDir = "cpsbasic_data/"
-if os.path.exists(theDir):
-    shutil.rmtree(theDir)
-os.makedirs(theDir)
+if not os.path.exists(theDir):
+    os.makedirs(theDir)
 
 date_list = months_inteval(start_year, start_month, end_year, end_month) # Get all the wanted months in the list
 for date in date_list:
     # Iterate through the list to download all the corresponding data
-    print("Prepare to download CPS file for " + date + " ...")
-    year = date[2:4]
-    month = date[4:6]
-    filename = theDir + month_dict[month] + year + "pub.zip" # Generate the filename in line with data.nber.org
-    url = 'https://data.nber.org/cps-basic/' + month_dict[month] + year + "pub.zip"
-    print("Downloading CPS file for " + date + " ...")
-    urllib.request.urlretrieve(url, filename) # Download the zip file
-    print("Download finished")
-    with ZipFile(filename, 'r') as zip:
-        content_name = zip.namelist()[0] # Gets the name of data file inside downloaded zip file
-        content_file_extention = os.path.splitext(content_name)[1] # Gets the data file extension
-        print('Extracting all the files now ...') 
-        zip.extractall(path=theDir) # Extracting the data
-    print("Cleaning .zip file ...")
-    os.remove(filename) # Remove the zip file
-    os.rename(theDir+content_name, theDir+date+content_file_extention) # Rename the data file
-    print("Download for " + date + " is completed!")
+    if int(date) >= 199401 and int(date) < 202001 :
+        print("Prepare to download CPS file for " + date + " ...")
+        year = date[2:4]
+        month = date[4:6]
+        filename = theDir + month_dict[month] + year + "pub.zip" # Generate the filename in line with data.nber.org
+        url = 'https://data.nber.org/cps-basic/' + month_dict[month] + year + "pub.zip"
+        print("Downloading CPS file for " + date + " ...")
+        urllib.request.urlretrieve(url, filename) # Download the zip file
+        print("Download finished")
+        with ZipFile(filename, 'r') as zip:
+            content_name = zip.namelist()[0] # Gets the name of data file inside downloaded zip file
+            content_file_extention = os.path.splitext(content_name)[1] # Gets the data file extension
+            print('Extracting all the files now ...') 
+            zip.extractall(path=theDir) # Extracting the data
+        print("Cleaning .zip file ...")
+        os.remove(filename) # Remove the zip file
+        os.rename(theDir+content_name, theDir+date+content_file_extention) # Rename the data file
+        print("Download for " + date + " is completed!")
+    
+    if int(date) < 199401 :
+        print("Prepare to download CPS file for " + date + " ...")
+        year = date[2:4]
+        month = date[4:6]
+        filename = theDir + "cpsb" + year + month + ".Z" # Generate the filename in line with data.nber.org
+        url = 'https://data.nber.org/cps-basic/' + "cpsb" + year + month + ".Z"
+        print("Downloading CPS file for " + date + " ...")
+        urllib.request.urlretrieve(url, filename) # Download the zip file
+        print("Download finished. Start decompressing...")
+        os.system("bash -c 'uncompress " + filename + "'")
+        print("Cleaning .zip file ...")
+        os.rename(theDir+"cpsb"+year+month, theDir+date+".dat")
+        print("Download for " + date + " is completed!")
 
