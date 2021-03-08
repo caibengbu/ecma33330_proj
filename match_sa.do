@@ -1,4 +1,4 @@
-local baseyear 2003 /* baseyear was 1998 in Shimer's original code */
+local baseyear 1998 /* baseyear was 1998 in Shimer's original code */
 use flows, clear
 drop if date==.
 gen flowsEE = flowEE/(flowEE+flowEI+flowEU)
@@ -26,7 +26,6 @@ local Y2 = "U"
 local Y3 = "I"
 
 qui foreach XY in EE EU EI UE UU UI IE IU II {
-	local `XY' EE
     gen MA_`XY' = .5*L6.flows`XY' + L5.flows`XY' + L4.flows`XY' + L3.flows`XY' + L2.flows`XY' + L.flows`XY' + flows`XY' + F.flows`XY' + F2.flows`XY' + F3.flows`XY' + F4.flows`XY' + F5.flows`XY' + .5*F6.flows`XY'
     replace MA_`XY' = MA_`XY' / 12
     gen ratio = flows`XY' / MA_`XY'
@@ -36,7 +35,7 @@ qui foreach XY in EE EU EI UE UU UI IE IU II {
     local k = r(mean_g)
     replace ratio = ratio / `k'
     gen SA_`XY' = flows`XY' / ratio
-    replace SA_`XY' = 0 if SA_`XY'==. & flowsEE~=.
+    replace SA_`XY' = 0 if SA_`XY'==.
     drop ratio*
     sort time
 }
