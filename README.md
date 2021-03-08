@@ -10,4 +10,4 @@ python merge.py
 ```
 
 ## Environment
-This package is built on and tested on Python 3.6 and Stata SE 16.1. You also need to install stata-se terminal utility.
+This package is built on and tested on Python 3.6, Stata SE 16.1 and Wolframcript. You also need to install stata-se terminal utility.
