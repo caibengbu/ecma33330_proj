@@ -5,7 +5,6 @@ This is the term project for ECMA33330 (Introduction to Dynamic Modeling) @ UChi
 ## How to run the package
 Right now we only focus on a on a much smaller time span than the original paper. Contrary to Shimer (2012) who processed monthly CPS files from January 1976 to January 2005. Our replication focus on the period from January 1976 to December 2019. 
 ```
-python downloads.py 1997601 201912
 python merge.py
 ```
 
