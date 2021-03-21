@@ -1,4 +1,4 @@
-# Term Project for ECMA33330: Replicating Shimer (2012)
+# Replicating Shimer (2012)
 
 This repostory manages codes for replicating “Reassessing the Ins and Outs of Unemployment” (Shimer, 2012), and extends the framework to more recent data during the Covid-19 pandemic.
 
