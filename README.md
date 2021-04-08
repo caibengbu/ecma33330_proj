@@ -7,7 +7,7 @@ Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You
 ```
 make
 ```
-in your Mac OS terminal. If you want to conduct analysis on a period of time with customized start date and end date. For example, you can type in Shell Terminal
+in your Mac OS terminal. If you want to conduct analysis on a period of time with customized start date and end date, for example January 1994 - December 2010, you can type in Shell Terminal
 ```
 make START_DATE=199401 END_DATE=201012
 ```
