@@ -3,11 +3,11 @@
 This repostory manages codes for replicating “Reassessing the Ins and Outs of Unemployment” (Shimer, 2012), and extends the framework to more recent data during the Covid-19 pandemic.
 
 ## How to run the package
-Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You can download and analyze with more recent data using our code.
+Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You can download and analyze with more recent data using our code. The default timespan is January 1976 - September 2020. You can compile this package by typing
 ```
 make
 ```
-If you want to conduct analysis on a period of time with customized start date and end date. For example, you can type in Shell Terminal
+in your Mac OS terminal. If you want to conduct analysis on a period of time with customized start date and end date. For example, you can type in Shell Terminal
 ```
 make START_DATE=199401 END_DATE=201012
 ```
