@@ -23,6 +23,3 @@ $(FOLDER):
 ../output/cps%.dta: match_extract.do ../input/cpsb%.raw | ../output
 	stata-se -e $< $*
 
-../output/short_ts.dta: empty_short_ts.do | ../output
-	stata-se -e $<
-
