@@ -14,4 +14,4 @@ make START_DATE=199401 END_DATE=201012
 To analyze the data from January 1994 to December 2012 only.
 
 ## Environment
-This package is built on and tested on Python 3.6, Stata SE 16.1 and Wolframcript. You also need to install stata-se terminal utility.
+This package is built on and tested on Stata SE 16.1 (with terminal utility), Wolframcript and GNU Make 3.81.
