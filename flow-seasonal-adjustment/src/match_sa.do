@@ -1,5 +1,6 @@
 local baseyear 1998 /* baseyear was 1998 in Shimer's original code */
-use flows, clear
+import delimited ../input/flows.txt, clear
+rename (v*) (date flowEE flowEI flowEU flowEM flowUE flowUI flowUU flowUM flowIE flowII flowIU flowIM flowME flowMI flowMU)
 drop if date==.
 gen flowsEE = flowEE/(flowEE+flowEI+flowEU)
 gen flowsEI = flowEI/(flowEE+flowEI+flowEU)
@@ -42,12 +43,12 @@ qui foreach XY in EE EU EI UE UU UI IE IU II {
 
 keep date SA_*
 
-save seasadj.dta, replace
+save ../output/seasadj.dta, replace
 
 *** Export the seasonally adjusted data to a text file.
-outfile SA_EU using eu.txt, replace
-outfile SA_EI using ei.txt, replace
-outfile SA_UE using ue.txt, replace
-outfile SA_UI using ui.txt, replace
-outfile SA_IE using ie.txt, replace
-outfile SA_IU using iu.txt, replace
+outfile SA_EU using ../output/eu.txt, replace
+outfile SA_EI using ../output/ei.txt, replace
+outfile SA_UE using ../output/ue.txt, replace
+outfile SA_UI using ../output/ui.txt, replace
+outfile SA_IE using ../output/ie.txt, replace
+outfile SA_IU using ../output/iu.txt, replace

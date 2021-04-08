@@ -1,9 +1,9 @@
-use cps`1', clear
+use ../input/cps`1', clear
 keep if mis == 1 | mis == 5
 keep if age>=16
 keep if status == 3 | status == 4
 
-destring dur, replace
+destring dur, force replace
 gen tag = 1 if dur <= 4
 replace tag = 0 if tag ==.
 collapse (sum) fweight, by(tag)
@@ -12,6 +12,5 @@ keep short
 duplicates drop
 gen date = `1'
 
-append using short_ts
-save short_ts, replace
+export delimited using ../output/short_unemp_`1'.txt, replace novarnames
 
