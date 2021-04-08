@@ -3,7 +3,7 @@
 This repostory manages codes for replicating “Reassessing the Ins and Outs of Unemployment” (Shimer, 2012), and extends the framework to more recent data during the Covid-19 pandemic.
 
 ## How to run the package
-Right now we only focus on a on a much smaller time span than the original paper. Contrary to Shimer (2012) who processed monthly CPS files from January 1976 to January 2005. Our replication focus on the period from January 1976 to December 2019. 
+Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You can download and analyze with more recent data using our code.
 ```
 make
 ```
