@@ -1,0 +1,7 @@
+*.dta
+*.gph
+*.log
+*.smcl
+*.stpr
+*.stsem
+.DS_Store
