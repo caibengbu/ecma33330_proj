@@ -7,11 +7,11 @@ Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You
 ```
 make
 ```
-in your Mac OS terminal. If you want to conduct analysis on a period of time with customized start date and end date, for example January 1994 - December 2010, you can type in Shell Terminal
+in your terminal. If you want to conduct analysis on a period of time with customized start date and end date, for example January 1994 - December 2010, you can type in your terminal
 ```
 make START_DATE=199401 END_DATE=201012
 ```
-To analyze the data from January 1994 to December 2012 only.
+This command activates an analysis from January 1994 to December 2012 only.
 
 ## Environment
 This package is built on and tested on Stata SE 16.1 (with terminal utility), Wolframcript and GNU Make 3.81.
