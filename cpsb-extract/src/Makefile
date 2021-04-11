@@ -13,7 +13,7 @@ INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(sub
 
 FOLDER=../input ../output 
 START_DATE?=199401
-END_DATE?=202009
+END_DATE?=202103
 START_YEAR:= $(shell echo $(START_DATE) | cut -c 1-4)
 START_MONTH:= $(shell echo $(START_DATE) | cut -c 5-6)
 END_YEAR:= $(shell echo $(END_DATE) | cut -c 1-4)
