@@ -1,5 +1,5 @@
 if `1' <= 197712 {
-    infix hh 4-8 hh1 9-12 hh2 25-26 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 88-90 str occu 91-93 using ../input/cpsb`1'.raw
+    infix hh 4-8 hh1 9-12 hh2 25-26 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 88-90 str occu 91-93 using ../input/`1'.dat
     generate double hh3 = hh*1000000+hh1*100+hh2
     generate educ1 = educ-grade+1
     drop hh hh1 hh2 educ
@@ -11,7 +11,7 @@ if `1' <= 197712 {
 }
 
 if `1' <= 198212 & `1' > 197712{
-    infix double hh 4-15 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 88-90 str occu 91-93 using ../input/cpsb`1'.raw
+    infix double hh 4-15 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 88-90 str occu 91-93 using ../input/`1'.dat
     generate educ1 = educ-grade+1
     drop educ
     rename educ1 educ
@@ -21,7 +21,7 @@ if `1' <= 198212 & `1' > 197712{
 }
 
 if `1' <= 198312 & `1' > 198212{
-    infix  double hh 4-15 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 524-526 str occu 527-529 using ../input/cpsb`1'.raw
+    infix  double hh 4-15 line 94-95 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 524-526 str occu 527-529 using ../input/`1'.dat
     generate educ1 = educ-grade+1
     drop educ
     rename educ1 educ
@@ -31,7 +31,7 @@ if `1' <= 198312 & `1' > 198212{
 }
 
 if `1' <= 198812 & `1' > 198312{
-    infix double hh 4-15 line 541-542 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 524-526 str occu 527-529 using ../input/cpsb`1'.raw
+    infix double hh 4-15 line 541-542 mis 2 age 97-98 race 100 sex 101 status 109 str dur 66-67 double fweight 121-132 educ 103-104 grade 105 mar 99 str ind 524-526 str occu 527-529 using ../input/`1'.dat
     generate educ1 = educ-grade+1
     drop educ
     rename educ1 educ
@@ -41,7 +41,7 @@ if `1' <= 198812 & `1' > 198312{
 }
 
 if `1' <= 199112 & `1' > 198812{
-    infix double hh 145-156 line 264-265 mis 70 age 270-271 race 280 sex 275 status 348 str dur 304-305 double fweight 398-405 double lweight 576-583 llind 584 educ 277-278 grade 279 mar 272 str ind 310-312 str occu 313-315 using ../input/cpsb`1'.raw
+    infix double hh 145-156 line 264-265 mis 70 age 270-271 race 280 sex 275 status 348 str dur 304-305 double fweight 398-405 double lweight 576-583 llind 584 educ 277-278 grade 279 mar 272 str ind 310-312 str occu 313-315 using ../input/`1'.dat
     generate educ1 = educ-grade+1
     drop educ
     rename educ1 educ
@@ -51,7 +51,7 @@ if `1' <= 199112 & `1' > 198812{
 }
 
 if `1' <= 199312 & `1' > 199112{
-    infix double hh 145-156 line 264-265 mis 70 age 270-271 race 280 sex 275 status 348 str dur 304-305 double fweight 398-405 double lweight 576-583 llind 584 educ 277-278 mar 272 str ind 310-312 str occu 313-315 using ../input/cpsb`1'.raw
+    infix double hh 145-156 line 264-265 mis 70 age 270-271 race 280 sex 275 status 348 str dur 304-305 double fweight 398-405 double lweight 576-583 llind 584 educ 277-278 mar 272 str ind 310-312 str occu 313-315 using ../input/`1'.dat
     replace dur="." if dur=="--"
     replace ind="." if ind=="---"
     replace occu="." if occu=="---"
@@ -59,7 +59,7 @@ if `1' <= 199312 & `1' > 199112{
 
 if `1' <= 199505 & `1' > 199312{
     clear
-    infix gestfips 93-94 double hrhhid 1-12 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 436-438 str occu 439-441 using ../input/cpsb`1'.raw
+    infix gestfips 93-94 double hrhhid 1-12 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 436-438 str occu 439-441 using ../input/`1'.dat
     generate z=real(hrsersuf)
     replace z=0 if hrsersuf=="-1"
     replace z=1 if hrsersuf=="A"
@@ -96,7 +96,7 @@ if `1' <= 199505 & `1' > 199312{
 }
 
 if `1' <= 200212 & `1' > 199505 {
-    infix double hrhhid 1-15 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 436-438 str occu 439-441 using ../input/cpsb`1'.raw
+    infix double hrhhid 1-15 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 436-438 str occu 439-441 using ../input/`1'.dat
     generate z=real(hrsersuf)
     replace z=0 if hrsersuf=="-1"
     replace z=1 if hrsersuf=="A"
@@ -133,7 +133,7 @@ if `1' <= 200212 & `1' > 199505 {
 }
 
 if `1' > 200212 {
-    infix double hrhhid 1-15 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 856-859 str occu 860-863 using ../input/cpsb`1'.raw
+    infix double hrhhid 1-15 str hrsersuf 75-76 line 147-148 mis 63-64 age 122-123 race 139-140 sex 129-130 status 180-181 str dur 407-409 double fweight 613-622 double lweight 593-602 llind 69-70 educ 137-138 mar 125-126 str ind 856-859 str occu 860-863 using ../input/`1'.dat
     generate z=real(hrsersuf)
     replace z=0 if hrsersuf=="-1"
     replace z=1 if hrsersuf=="A"
