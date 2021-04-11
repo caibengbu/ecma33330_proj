@@ -36,10 +36,11 @@ $(FOLDER):
 
 ../input/%.dat: | ../input
 	$(eval YEAR = $(call SUBSTR, 1,4,$*))
-	$(eval DAT_FILENAME = $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$*))$(call SUBSTR, 3,4,$*)pub.dat)
-	wget https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(DAT_FILENAME).gz -P ../input
-	gzip -d ../input/$(DAT_FILENAME).gz && mv ../input/$(DAT_FILENAME) $@
+	$(eval FILENAME_STEM = $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$*))$(call SUBSTR, 3,4,$*))
+	wget https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input
+	unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip
 
 ../output/cps%.dta: match_extract.do ../input/%.dat | ../output
 	stata-se -e $< $*
 
+https://www2.census.gov/programs-surveys/cps/datasets/2012/basic/aug12pub.dat.gz
