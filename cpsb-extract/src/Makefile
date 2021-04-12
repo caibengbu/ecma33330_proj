@@ -10,9 +10,6 @@ MONTH_CONVERTER = $(strip $(subst 01,jan,$(subst 02,feb,$(subst 03,mar,$(subst 0
 # Define INV_MONTH_CONVERTER
 INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(subst apr,04,$(subst may,05,$(subst jun,06,$(subst 07,jul,$(subst 08,aug,$(subst 09,sep,$(subst 10,oct,$(subst 11,nov,$(subst 12,dec,$(1))))))))))))))
 
-# Downloading from which source?
-SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source')
-
 FOLDER=../input ../output 
 START_DATE?=197601
 END_DATE?=202103
@@ -30,7 +27,11 @@ ALL_DATES_2DIG_MONTH=$(foreach date, $(ALL_DATES), $(call MONTH_CONVERTER, $(cal
 ALL_DATES_IN_FILENAMES=$(join $(ALL_DATES_2DIG_MONTH),$(ALL_DATES_2DIG_YEAR))
 OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).dta)
 
-all: $(OUTPUT)
+all: set_sources $(OUTPUT)
+
+set_sources:
+	$(eval SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source'))
+
 
 $(FOLDER):
 	mkdir $@
