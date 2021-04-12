@@ -169,5 +169,5 @@ if `1' > 200212 {
     drop hrhhid hrsersuf
 }
 
-compress
+*compress
 save ../output/cps`1'.dta
