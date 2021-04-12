@@ -14,8 +14,8 @@ INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(sub
 SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source')
 
 FOLDER=../input ../output 
-START_DATE?=199301
-END_DATE?=199412
+START_DATE?=197601
+END_DATE?=202103
 START_YEAR:= $(shell echo $(START_DATE) | cut -c 1-4)
 START_MONTH:= $(shell echo $(START_DATE) | cut -c 5-6)
 END_YEAR:= $(shell echo $(END_DATE) | cut -c 1-4)
