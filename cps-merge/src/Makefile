@@ -1,5 +1,5 @@
 FOLDER= ../input ../output/
-DATES= $(shell ls ../../cpsb-extract/output/*.dta | cut -c 30-35)
+DATES= $(shell ls ../../cpsb-extract/output/*.dta 2> /dev/null | cut -c 30-35)
 CPS_DTA_INPUTS=$(foreach date, $(DATES), ../input/cps$(date).dta)
 FIRST_DATE=$(firstword $(DATES))
 LAST_DATE=$(lastword $(DATES))

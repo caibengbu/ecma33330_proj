@@ -1,5 +1,5 @@
 FOLDER= ../input ../output/
-DATES= $(shell ls ../../cpsb-extract/output/*.dta | cut -c 30-35)
+DATES= $(shell ls ../../cpsb-extract/output/*.dta 2> /dev/null | cut -c 30-35)
 SHORT_UNEMP_BY_YEAR= $(foreach date, $(DATES), ../output/short_unemp_$(date).txt)
 
 all: ../output/short_unemp_ts.txt

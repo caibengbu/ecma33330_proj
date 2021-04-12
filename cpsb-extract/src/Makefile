@@ -10,10 +10,12 @@ MONTH_CONVERTER = $(strip $(subst 01,jan,$(subst 02,feb,$(subst 03,mar,$(subst 0
 # Define INV_MONTH_CONVERTER
 INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(subst apr,04,$(subst may,05,$(subst jun,06,$(subst 07,jul,$(subst 08,aug,$(subst 09,sep,$(subst 10,oct,$(subst 11,nov,$(subst 12,dec,$(1))))))))))))))
 
+# Downloading from which source?
+SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source')
 
 FOLDER=../input ../output 
-START_DATE?=199401
-END_DATE?=202103
+START_DATE?=199301
+END_DATE?=199412
 START_YEAR:= $(shell echo $(START_DATE) | cut -c 1-4)
 START_MONTH:= $(shell echo $(START_DATE) | cut -c 5-6)
 END_YEAR:= $(shell echo $(END_DATE) | cut -c 1-4)
@@ -28,19 +30,30 @@ ALL_DATES_2DIG_MONTH=$(foreach date, $(ALL_DATES), $(call MONTH_CONVERTER, $(cal
 ALL_DATES_IN_FILENAMES=$(join $(ALL_DATES_2DIG_MONTH),$(ALL_DATES_2DIG_YEAR))
 OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).dta)
 
-
 all: $(OUTPUT)
 
 $(FOLDER):
 	mkdir $@
 
-../input/%.dat: | ../input
+../input/cpsb%.raw: | ../input
 	$(eval YEAR = $(call SUBSTR, 1,4,$*))
 	$(eval FILENAME_STEM = $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$*))$(call SUBSTR, 3,4,$*))
+ifeq ($(SOURCE),1)
+	@wget -c https://data.nber.org/cps-basic2/raw/cpsb$*.raw -P ../input
+else ifeq ($(SOURCE),2)
+	@if [ $* -lt 199400 ] ; then echo "Census.gov does not support data downloading for files prior to Janurary 1994! Please try downloading from another source." && exit 1; fi
 	wget -c https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input
 	unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip
+else 
+	@if [ $* -gt 199400 ] ; then \
+		wget -c https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input ; \
+		unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip ; \
+	else \
+		wget -c https://data.nber.org/cps-basic2/raw/cpsb$*.raw -P ../input ; \
+	fi
+endif
 
-../output/cps%.dta: match_extract.do ../input/%.dat | ../output
+../output/cps%.dta: match_extract.do ../input/cpsb%.raw | ../output
 	stata-se -e $< $*
 
 clean:
