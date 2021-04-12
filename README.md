@@ -14,7 +14,7 @@ make START_DATE=199401 END_DATE=201012
 This command activates an analysis from January 1994 to December 2012 only.
 
 ## Sources of Raw Data
-There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). We made available 3 possible solutions that our user can choose from:
+There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). We made available 3 possible solutions that our users can choose from:
 1. Download from NBER.org
 2. Download from Census.gov
 3. Download from a mixture of NBER.org (for files eariler than 1994) and Census.gov (for files later than 1994). 
