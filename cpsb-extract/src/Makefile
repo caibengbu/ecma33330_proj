@@ -37,7 +37,7 @@ $(FOLDER):
 ../input/%.dat: | ../input
 	$(eval YEAR = $(call SUBSTR, 1,4,$*))
 	$(eval FILENAME_STEM = $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$*))$(call SUBSTR, 3,4,$*))
-	wget https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input
+	wget -c https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input
 	unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip
 
 ../output/cps%.dta: match_extract.do ../input/%.dat | ../output
