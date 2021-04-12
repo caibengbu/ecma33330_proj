@@ -3,6 +3,7 @@ DATES= $(shell ls ../../cpsb-extract/output/*.dta | cut -c 30-35)
 SHORT_UNEMP_BY_YEAR= $(foreach date, $(DATES), ../output/short_unemp_$(date).txt)
 
 all: ../output/short_unemp_ts.txt
+.INTERMEDIATE: $(SHORT_UNEMP_BY_YEAR)
 
 $(FOLDER):
 	mkdir $@
@@ -16,3 +17,6 @@ $(FOLDER):
 ../output/short_unemp_ts.txt: $(SHORT_UNEMP_BY_YEAR) | ../output
 	cat ../output/short_unemp_*.txt > $@
 
+clean:
+	rm *.log
+	rm -r $(FOLDER)

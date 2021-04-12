@@ -11,3 +11,7 @@ $(FOLDER):
 
 ../output/%.txt: match_sa.do ../input/flows.txt | ../output
 	stata-se -e $<
+
+clean:
+	rm *.log
+	rm -r $(FOLDER)

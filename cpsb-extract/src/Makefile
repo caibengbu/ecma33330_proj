@@ -43,4 +43,6 @@ $(FOLDER):
 ../output/cps%.dta: match_extract.do ../input/%.dat | ../output
 	stata-se -e $< $*
 
-https://www2.census.gov/programs-surveys/cps/datasets/2012/basic/aug12pub.dat.gz
+clean:
+	rm *.log
+	rm -r $(FOLDER)
