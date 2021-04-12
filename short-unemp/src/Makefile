@@ -18,5 +18,5 @@ $(FOLDER):
 	cat ../output/short_unemp_*.txt > $@
 
 clean:
-	rm *.log
-	rm -r $(FOLDER)
+	rm -f *.log
+	rm -rf $(FOLDER)

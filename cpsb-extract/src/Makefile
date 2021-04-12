@@ -44,5 +44,5 @@ $(FOLDER):
 	stata-se -e $< $*
 
 clean:
-	rm *.log
-	rm -r $(FOLDER)
+	rm -f *.log
+	rm -rf $(FOLDER)

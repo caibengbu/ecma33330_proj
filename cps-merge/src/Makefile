@@ -28,5 +28,5 @@ $(FOLDER):
 	cat ../output/flow*.txt > $@
 
 clean:
-	rm *.log
-	rm -r $(FOLDER)
+	rm -f *.log
+	rm -rf $(FOLDER)
