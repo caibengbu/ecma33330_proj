@@ -11,51 +11,40 @@ MONTH_CONVERTER = $(strip $(subst 01,jan,$(subst 02,feb,$(subst 03,mar,$(subst 0
 INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(subst apr,04,$(subst may,05,$(subst jun,06,$(subst 07,jul,$(subst 08,aug,$(subst 09,sep,$(subst 10,oct,$(subst 11,nov,$(subst 12,dec,$(1))))))))))))))
 
 FOLDER=../input ../output 
-START_DATE?=197601
+START_DATE?=199401
 END_DATE?=202103
 START_YEAR:= $(call SUBSTR,1,4,$(START_DATE))
 START_MONTH:= $(call SUBSTR,5,6,$(START_DATE))
 END_YEAR:= $(call SUBSTR,1,4,$(END_DATE))
 END_MONTH:= $(call SUBSTR,5,6,$(END_DATE))
 MONTHS_NUM=01 02 03 04 05 06 07 08 09 10 11 12
-YEARA_NUM=$(shell seq $(START_YEAR) $(END_YEAR))
+YEARA_NUM=$(shell powershell -noprofile $(START_YEAR)..$(END_YEAR))
 ALL_DATES1=$(foreach year, $(YEARA_NUM), $(foreach month, $(MONTHS_NUM), $(year)$(month)))
-ALL_DATES2=$(shell seq $(START_DATE) $(END_DATE))
+ALL_DATES2=$(shell powershell -noprofile $(START_DATE)..$(END_DATE))
 ALL_DATES=$(filter $(ALL_DATES1), $(ALL_DATES2))
 ALL_DATES_2DIG_YEAR=$(foreach date, $(ALL_DATES), $(call SUBSTR, 3,4,$(date)))
 ALL_DATES_2DIG_MONTH=$(foreach date, $(ALL_DATES), $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$(date))))
 ALL_DATES_IN_FILENAMES=$(join $(ALL_DATES_2DIG_MONTH),$(ALL_DATES_2DIG_YEAR))
 OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).dta)
+SOURCE:=$(shell powershell -noprofile Read-Host "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed")
 
-all: set_sources $(OUTPUT)
 
-set_sources:
-	$(eval SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source'))
-
+all: $(OUTPUT)
 
 $(FOLDER):
-	mkdir $@
+	powershell -noprofile mkdir $@
 
 ../input/cpsb%.raw: | ../input
 	$(eval YEAR = $(call SUBSTR, 1,4,$*))
 	$(eval FILENAME_STEM = $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$*))$(call SUBSTR, 3,4,$*))
-ifeq ($(SOURCE),1)
-	@wget -c https://data.nber.org/cps-basic2/raw/cpsb$*.raw -P ../input
-else ifeq ($(SOURCE),2)
-	@if [ $* -lt 199400 ] ; then echo "Census.gov does not support data downloading for files prior to Janurary 1994! Please try downloading from another source." && exit 1; fi
-	wget -c https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input
-	unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip
-else 
-	@if [ $* -gt 199400 ] ; then \
-		wget -c https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip -P ../input ; \
-		unzip -p ../input/$(FILENAME_STEM)pub.zip > $@ && rm ../input/$(FILENAME_STEM)pub.zip ; \
-	else \
-		wget -c https://data.nber.org/cps-basic2/raw/cpsb$*.raw -P ../input ; \
-	fi
-endif
+	powershell -noprofile wget "https://www2.census.gov/programs-surveys/cps/datasets/$(YEAR)/basic/$(FILENAME_STEM)pub.zip" -Outfile "../input/$(FILENAME_STEM)pub.zip"
+	powershell -noprofile Expand-Archive "../input/$(FILENAME_STEM)pub.zip" "../input"
+	powershell -noprofile rm ../input/$(FILENAME_STEM)pub.zip
+	powershell -noprofile cat ../input/$(FILENAME_STEM)pub.* > $@
+
 
 ../output/cps%.dta: match_extract.do ../input/cpsb%.raw | ../output
-	stata-se -e $< $*
+	powershell -noprofile "D:\STATA\StataSE-64.exe" /e $< $*
 
 clean:
 	rm -f *.log
