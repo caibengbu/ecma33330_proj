@@ -1,7 +1,14 @@
 use ../input/cps`1', clear
 keep if mis == 1 | mis == 5
 keep if age>=16
-keep if status == 3 | status == 4
+if inrange(`1',197600,198900) {
+	keep if status == 3
+} 
+else 
+{
+	keep if status == 3 | status == 4
+}
+
 
 destring dur, force replace
 gen tag = 1 if dur <= 4
