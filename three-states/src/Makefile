@@ -1,10 +1,12 @@
 FOLDER= ../input ../output
-all: $(foreach direction, ei eu ie iu ue ui, ../output/$(direction)_M.dat)
+INPUT=$(foreach direction, ei eu ie iu ue ui, ../input/$(direction).txt)
+OUTPUT=$(foreach direction, ei eu ie iu ue ui, ../output/$(direction)_M.dat)
+all: $(OUTPUT)
 
 $(FOLDER):
 	mkdir $@
 
-../output/%_M.dat: three-state-M.wls ../input/%.txt | ../output
+../output/%_M.dat: three-state-M.wls $(INPUT) | ../output
 	./$<
 
 ../input/%.txt: | ../input
