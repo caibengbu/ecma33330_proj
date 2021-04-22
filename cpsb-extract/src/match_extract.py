@@ -191,7 +191,7 @@ elif date <= 200212:
     df['hrhhid'] = pd.to_numeric(df['hrhhid'],errors='coerce')
     df['hh'] = df['hrhhid']*100 + df['z']
     df = df.drop(['hrhhid','hrsersuf'],axis=1)
-elif date <= 200501:
+else :
     data_dict = {
         "hrhhid":(0,15),
         "hrsersuf":(74,76),
@@ -217,6 +217,7 @@ elif date <= 200501:
     df['hrhhid'] = pd.to_numeric(df['hrhhid'],errors='coerce')
     df['hh'] = df['hrhhid']*100 + df['z']
     df = df.drop(['hrhhid','hrsersuf'],axis=1)
+
 
 df["dur"] = pd.to_numeric(df["dur"], errors="coerce")
 df["ind"] = pd.to_numeric(df["ind"], errors="coerce")
