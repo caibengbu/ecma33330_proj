@@ -25,7 +25,7 @@ ALL_DATES=$(filter $(ALL_DATES1), $(ALL_DATES2))
 ALL_DATES_2DIG_YEAR=$(foreach date, $(ALL_DATES), $(call SUBSTR, 3,4,$(date)))
 ALL_DATES_2DIG_MONTH=$(foreach date, $(ALL_DATES), $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$(date))))
 ALL_DATES_IN_FILENAMES=$(join $(ALL_DATES_2DIG_MONTH),$(ALL_DATES_2DIG_YEAR))
-OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).dta)
+OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).csv)
 
 all: set_sources $(OUTPUT)
 
@@ -54,8 +54,8 @@ else
 	fi
 endif
 
-../output/cps%.dta: match_extract.do ../input/cpsb%.raw | ../output
-	stata-se -e $< $*
+../output/cps%.csv: match_extract.py ../input/cpsb%.raw | ../output
+	python $< $*
 
 clean:
 	rm -f *.log
