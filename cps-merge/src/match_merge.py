@@ -2,8 +2,12 @@ import pandas as pd
 import sys
 filename1 = "../input/cps"+sys.argv[1]+".csv"
 filename2 = "../input/cps"+sys.argv[2]+".csv"
-df1 = pd.read_csv(filename1)
-df2 = pd.read_csv(filename2)
+df1 = pd.read_csv(filename1,dtype="float64")
+df2 = pd.read_csv(filename2,dtype="float64")
+df1['hh'] = df1.hh.replace('( |-|/)','',regex=True).astype("float64")
+df2['hh'] = df2.hh.replace('( |-|/)','',regex=True).astype("float64") # Filter instances like '5-6139622701' and '0 3001251506'
+df1['race'] = pd.to_numeric(df1['race'],errors="coerce")
+df2['race'] = pd.to_numeric(df2['race'],errors="coerce")
 
 df1 = df1[(df1.mis != 4) & (df1.mis != 8)]
 df2 = df2[(df2.mis != 1) & (df2.mis != 5)]
@@ -13,8 +17,6 @@ df1['mis0'] = df1['mis']
 df2['mis0'] = df2['mis'] - 1
 
 # flag dups
-#df1 = df1.sort_values(["hh","line", "race", "sex", "age", "mis0"])
-#df2 = df2.sort_values(["hh","line", "race", "sex", "age", "mis0"])
 df1['is_dup'] = df1.duplicated(subset=["hh","line", "race", "sex", "age", "mis0"],keep=False)
 df2['is_dup'] = df2.duplicated(subset=["hh","line", "race", "sex", "age", "mis0"],keep=False)
 df1['dup'] = - df1.groupby(["hh","line", "race", "sex", "age", "mis0"]).cumcount() - df1['is_dup'] # negative flag
