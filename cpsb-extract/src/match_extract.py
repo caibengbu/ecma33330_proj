@@ -1,6 +1,7 @@
 import sys
 import pandas as pd
 import string
+import numpy as np
 filename = '../input/cpsb'+sys.argv[1]+'.raw'
 date = int(sys.argv[1])
 
@@ -29,8 +30,9 @@ if date <= 197712:
         "occu": (90,93)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
     df['hh3'] = df['hh']*1000000 + df['hh1']*100 + df['hh2']
-    df['educ1'] = pd.to_numeric(df['educ'],errors='coerce') - pd.to_numeric(df['grade'],errors='coerce') + 1
+    df['educ1'] = df['educ'] - df['grade'] + 1
     df = df.drop(['hh','hh1','hh2','educ'], axis=1)
     df = df.rename(columns={'hh3':'hh','educ1':'educ'})
 elif date <= 198212:
@@ -51,7 +53,8 @@ elif date <= 198212:
         "occu": (90,93)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
-    df['educ1'] = pd.to_numeric(df['educ'],errors='coerce') - pd.to_numeric(df['grade'],errors='coerce') + 1
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
+    df['educ1'] = df['educ'] - df['grade'] + 1
     df = df.drop(['educ'], axis=1)
     df = df.rename(columns={'educ1':'educ'})
 elif date <= 198312:
@@ -72,7 +75,8 @@ elif date <= 198312:
         "occu": (526,529)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
-    df['educ1'] = pd.to_numeric(df['educ'],errors='coerce') - pd.to_numeric(df['grade'],errors='coerce') + 1
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
+    df['educ1'] = df['educ'] - df['grade'] + 1
     df = df.drop(['educ'], axis=1)
     df = df.rename(columns={'educ1':'educ'})
 elif date <= 198812:
@@ -93,7 +97,8 @@ elif date <= 198812:
         "occu": (526,529)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
-    df['educ1'] = pd.to_numeric(df['educ'],errors='coerce') - pd.to_numeric(df['grade'],errors='coerce') + 1
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
+    df['educ1'] = df['educ'] - df['grade'] + 1
     df = df.drop(['educ'], axis=1)
     df = df.rename(columns={'educ1':'educ'})
 elif date <= 199112:
@@ -116,7 +121,8 @@ elif date <= 199112:
         "occu":(313,315)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
-    df['educ1'] = pd.to_numeric(df['educ'],errors='coerce') - pd.to_numeric(df['grade'],errors='coerce') + 1
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
+    df['educ1'] = df['educ'] - df['grade'] + 1
     df = df.drop(['educ'], axis=1)
     df = df.rename(columns={'educ1':'educ'})
 elif date <= 199312:
@@ -138,6 +144,7 @@ elif date <= 199312:
         "occu":(312,315)}
     df = pd.read_fwf(filename,colspecs=list(data_dict.values()),header=None)
     df.columns = list(data_dict.keys())
+    df = df.replace('[^0-9]', np.nan,regex=True).astype("float64")
 elif date <= 199505:
     data_dict = {
         "gestfips":(92,94),
@@ -162,7 +169,7 @@ elif date <= 199505:
     z = df.hrsersuf.map(hrsersuf_dict).fillna(0)
     df['z'] = pd.to_numeric(df['hrsersuf'],errors='coerce').fillna(0)
     df['z'] = df['z'] + z
-    df['hrhhid'] = pd.to_numeric(df['hrhhid'],errors='coerce')
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
     df['hh'] = df['hrhhid']*100 + df['z']
     df = df.drop(['hrhhid','hrsersuf'],axis=1)
 elif date <= 200212:
@@ -188,7 +195,7 @@ elif date <= 200212:
     z = df.hrsersuf.map(hrsersuf_dict).fillna(0)
     df['z'] = pd.to_numeric(df['hrsersuf'],errors='coerce').fillna(0)
     df['z'] = df['z'] + z
-    df['hrhhid'] = pd.to_numeric(df['hrhhid'],errors='coerce')
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
     df['hh'] = df['hrhhid']*100 + df['z']
     df = df.drop(['hrhhid','hrsersuf'],axis=1)
 else :
@@ -214,12 +221,9 @@ else :
     z = df.hrsersuf.map(hrsersuf_dict).fillna(0)
     df['z'] = pd.to_numeric(df['hrsersuf'],errors='coerce').fillna(0)
     df['z'] = df['z'] + z
-    df['hrhhid'] = pd.to_numeric(df['hrhhid'],errors='coerce')
+    df = df.replace('[^0-9]', np.nan, regex=True).astype("float64")
     df['hh'] = df['hrhhid']*100 + df['z']
     df = df.drop(['hrhhid','hrsersuf'],axis=1)
 
-
-df["dur"] = pd.to_numeric(df["dur"], errors="coerce")
-df["ind"] = pd.to_numeric(df["ind"], errors="coerce")
-df["occu"] = pd.to_numeric(df["occu"], errors="coerce")
+# Export
 df.to_csv('../output/cps'+sys.argv[1]+'.csv',index=False)
