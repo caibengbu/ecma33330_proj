@@ -9,8 +9,8 @@ DATE_PAIR=$(join $(ALL_DATES_BUT_LAST), $(addprefix _, $(ALL_DATES_BUT_FIRST)))
 
 FLOW_FILENAMES=$(foreach date_pair, $(DATE_PAIR), ../output/flow$(date_pair).txt)
 
-all: $(foreach date_pair, $(DATE_PAIR), ../output/merg$(date_pair).csv)
-.INTERMEDIATE: $(FLOW_FILENAMES)
+all: ../output/flows.txt
+.INTERMEDIATE: $(FLOW_FILENAMES) 
 
 $(FOLDER):
 	mkdir $@
@@ -21,8 +21,8 @@ $(FOLDER):
 ../output/merg%.csv: match_merge.py $(CPS_DTA_INPUTS) | ../output
 	python $< $(subst _, ,$*)
 
-../output/flow%.txt: match_flow.do ../output/merg%.dta | ../output
-	stata-se -e $^ $(subst _, ,$*)
+../output/flow%.txt: match_flow.py ../output/merg%.csv | ../output
+	python $^ $(subst _, ,$*)
 
 ../output/flows.txt: $(FLOW_FILENAMES) | ../output
 	cat ../output/flow*.txt > $@

@@ -12,7 +12,7 @@ INV_MONTH_CONVERTER = $(strip $(subst jan,01,$(subst feb,02,$(subst mar,03,$(sub
 
 FOLDER=../input ../output 
 START_DATE?=197601
-END_DATE?=202103
+END_DATE?=202009
 START_YEAR:= $(call SUBSTR,1,4,$(START_DATE))
 START_MONTH:= $(call SUBSTR,5,6,$(START_DATE))
 END_YEAR:= $(call SUBSTR,1,4,$(END_DATE))
