@@ -10,7 +10,6 @@ DATE_PAIR=$(join $(ALL_DATES_BUT_LAST), $(addprefix _, $(ALL_DATES_BUT_FIRST)))
 FLOW_FILENAMES=$(foreach date_pair, $(DATE_PAIR), ../output/flow$(date_pair).txt)
 
 all: ../output/flows.txt
-.INTERMEDIATE: $(FLOW_FILENAMES) 
 
 $(FOLDER):
 	mkdir $@

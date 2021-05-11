@@ -68,7 +68,7 @@ if 'EE' in flows_dict:
         f.write(f"{second_date},{flowEE},{flowEI},{flowEU},{flowEM},{flowUE},{flowUI},{flowUU},{flowUM},{flowIE},{flowII},{flowIU},{flowIM},{flowME},{flowMI},{flowMU}\n")
 else:
     with open(out_filename,'w') as f:
-        f.write(f"{second_date},0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\n")
+        f.write(f"{second_date}, , , , , , , , , , , , , , , \n")
 
 
     
