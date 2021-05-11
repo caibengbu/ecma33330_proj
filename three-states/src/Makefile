@@ -6,8 +6,8 @@ all: $(OUTPUT)
 $(FOLDER):
 	mkdir $@
 
-../output/%_M.dat: three-state-M.wls $(INPUT) | ../output
-	./$<
+../output/%_M.dat: three-state.py $(INPUT) | ../output
+	python $<
 
 ../input/%.txt: | ../input
 	@if [ -e ../../flow-seasonal-adjustment/output/$(@F) ] ; then ln -s ../../flow-seasonal-adjustment/output/$(@F) $@ ; else exit 1; fi
