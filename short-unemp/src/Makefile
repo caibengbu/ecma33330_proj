@@ -15,7 +15,7 @@ $(FOLDER):
 	python $< $*
 
 ../output/short_unemp_ts.txt: $(SHORT_UNEMP_BY_YEAR) | ../output
-	cat ../output/short_unemp_*.txt > $@
+	cat ../output/short_unemp_[0-9]*.txt > $@
 
 clean:
 	rm -f *.log

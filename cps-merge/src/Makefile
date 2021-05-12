@@ -24,7 +24,7 @@ $(FOLDER):
 	python $^ $(subst _, ,$*)
 
 ../output/flows.txt: $(FLOW_FILENAMES) | ../output
-	cat ../output/flow*.txt > $@
+	cat ../output/flow*_*.txt > $@
 
 clean:
 	rm -f *.log
