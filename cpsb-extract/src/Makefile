@@ -26,12 +26,17 @@ ALL_DATES_2DIG_YEAR=$(foreach date, $(ALL_DATES), $(call SUBSTR, 3,4,$(date)))
 ALL_DATES_2DIG_MONTH=$(foreach date, $(ALL_DATES), $(call MONTH_CONVERTER, $(call SUBSTR, 5,6,$(date))))
 ALL_DATES_IN_FILENAMES=$(join $(ALL_DATES_2DIG_MONTH),$(ALL_DATES_2DIG_YEAR))
 OUTPUT= $(foreach date, $(ALL_DATES), ../output/cps$(date).csv)
+KEEP_RAW=$(shell bash -c 'read -p "Do you want to keep the raw files? They takes up around 60 GiB. [0] NO [1] YES" iskeep; echo $$iskeep')
 
 all: set_sources $(OUTPUT)
 
 set_sources:
 	$(eval SOURCE:= $(shell bash -c 'read -p "Which source do you want to download Basic Monthly CPS data from? [1] nber.org [2] census.gov [3] mixed:" source; echo $$source'))
 
+ifeq ($(KEEP_RAW),1)
+.PRECIOUS: $(foreach date, $(ALL_DATES), ../output/cpsb$(date).raw)
+endif
+	
 
 $(FOLDER):
 	mkdir $@
@@ -59,4 +64,4 @@ endif
 
 clean:
 	rm -f *.log
-	rm -rf $(FOLDER)
+	rm -rf ../output

@@ -14,7 +14,7 @@ all: ../output/flows.txt
 $(FOLDER):
 	mkdir $@
 
-../input/cps%.dta: | ../input
+../input/cps%.csv: | ../input
 	ln -s ../../cpsb-extract/output/$(@F) $@
 
 ../output/merg%.csv: match_merge.py $(CPS_DTA_INPUTS) | ../output
