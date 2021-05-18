@@ -8,8 +8,10 @@ ALL_DATES_BUT_LAST=$(filter-out $(LAST_DATE),$(DATES))
 DATE_PAIR=$(join $(ALL_DATES_BUT_LAST), $(addprefix _, $(ALL_DATES_BUT_FIRST)))
 
 FLOW_FILENAMES=$(foreach date_pair, $(DATE_PAIR), ../output/flow$(date_pair).txt)
+MERG_FILENAMES=$(foreach date_pair, $(DATE_PAIR), ../output/merg$(date_pair).csv)
 
 all: ../output/flows.txt
+.PRECIOUS: $(FLOW_FILENAMES) $(MERG_FILENAMES)
 
 $(FOLDER):
 	mkdir $@
