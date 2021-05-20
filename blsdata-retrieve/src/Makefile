@@ -1,6 +1,6 @@
 FOLDER=../input ../output
 START_DATE?=197601
-END_DATE?=202009
+END_DATE?=202102
 all: ../output/short_emp.txt ../output/emp.txt ../output/unemp.txt
 
 $(FOLDER):
@@ -16,4 +16,4 @@ $(FOLDER):
 	cp $< $@
 
 ../output/emp.txt: ../output/LNS12000000.txt | ../output
-	cp $< $@
+	cp $< $@ß

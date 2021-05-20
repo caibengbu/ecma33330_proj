@@ -6,11 +6,12 @@ import sys
 def retrieve(request_range):
     res_dict = {'LNS13000000': None,
             'LNS12000000': None,
-            'LNS13008396': None}
+            'LNS13008396': None,
+            'LNS14000000': None}
     start_year = str(request_range[0])
     end_year = str(request_range[-1])
     headers = {'Content-type': 'application/json'}
-    data = json.dumps({"seriesid": ['LNS13000000','LNS12000000','LNS13008396'],"startyear":start_year, "endyear":end_year})
+    data = json.dumps({"seriesid": ['LNS13000000','LNS12000000','LNS13008396', 'LNS14000000'],"startyear":start_year, "endyear":end_year})
     p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
     json_data = json.loads(p.text)
     if json_data['Results'] != {}:
@@ -43,7 +44,8 @@ request_range_pertime = np.array_split(year_range,request_times)
 
 res = {'LNS13000000': [None,None],
         'LNS12000000': [None,None],
-        'LNS13008396': [None,None]}
+        'LNS13008396': [None,None],
+        'LNS14000000': [None,None]}
 
 for theRange in request_range_pertime:
     res_temp_dict = retrieve(theRange)
