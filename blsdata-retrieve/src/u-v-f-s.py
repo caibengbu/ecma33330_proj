@@ -31,7 +31,7 @@ def read_withDate(filename,delimiter,skiprows=0):
 UnempM = read_withDate("../output/unemp.txt",delimiter=" ")
 EmpM = read_withDate("../output/emp.txt",delimiter=" ")
 ShortM = read_withDate("../output/short_emp.txt",delimiter=" ")
-ShortShareM = read_withDate("test.d11",delimiter="\t",skiprows=2)
+ShortShareM = read_withDate("short-unemp-x13.d11",delimiter="\t",skiprows=2)
 ShortAdjM = ShortShareM * UnempM
 
 plt.plot(ShortAdjM,label="from CPS")

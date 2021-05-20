@@ -45,5 +45,5 @@ x11{
 }
 """
 
-with open('test.spc','w') as f:
+with open('short-unemp-x13.spc','w') as f:
     f.write(spec_text)
