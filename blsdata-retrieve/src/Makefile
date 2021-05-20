@@ -1,7 +1,7 @@
 FOLDER=../input ../output
 START_DATE?=197601
 END_DATE?=202009
-all: ../output/short_emp.txt ../output/emp.txt ../output/unemp.txt
+all: ../output/adjusted_short_unemp.png
 
 $(FOLDER):
 	mkdir $@
