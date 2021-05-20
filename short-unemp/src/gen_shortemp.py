@@ -5,7 +5,7 @@ filename = "../input/cps"+sys.argv[1]+".csv"
 df = pd.read_csv(filename,dtype="float64")
 df = df[(df.mis==1) | (df.mis==5)]
 df = df[df.age>=16]
-if date>197600 or date<198900:
+if date>197600 and date<198900:
     df = df[df.status==3]
 else:
     df = df[(df.status==3) | (df.status==4)]

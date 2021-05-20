@@ -17,3 +17,7 @@ $(FOLDER):
 
 ../output/emp.txt: ../output/LNS12000000.txt | ../output
 	cp $< $@
+
+../input/short_emp_CPS.txt: | ../input
+	@if [ -e ../../short-unemp/output/short_unemp_ts.txt ] ; then ln -s ../../short-unemp/output/short_unemp_ts.txt $@ ; else exit 1; fi
+
