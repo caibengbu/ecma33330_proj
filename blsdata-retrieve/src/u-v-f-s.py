@@ -27,9 +27,9 @@ def read_withDate(filename,delimiter,skiprows=0):
     return temp.set_index(date_pandas).data
 
 smooth = 10**5
-UnempM = read_withDate("../output/unemp.txt",delimiter=" ")
-EmpM = read_withDate("../output/emp.txt",delimiter=" ")
-ShortM = read_withDate("../output/short_emp.txt",delimiter=" ")
+UnempM = read_withDate("../output/LNS13000000.txt",delimiter=" ")
+EmpM = read_withDate("../output/LNS12000000.txt",delimiter=" ")
+ShortM = read_withDate("../output/LNS13008396.txt",delimiter=" ")
 ShortShareM = read_withDate("short-unemp-x13.d11",delimiter="\t",skiprows=2)
 ShortAdjM = ShortShareM * UnempM
 
