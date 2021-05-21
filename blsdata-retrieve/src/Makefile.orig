@@ -1,7 +1,12 @@
 FOLDER=../input ../output
 START_DATE?=197601
+<<<<<<< HEAD
+END_DATE?=202102
+all: ../output/short_emp.txt ../output/emp.txt ../output/unemp.txt
+=======
 END_DATE?=202009
-all: ../output/adjusted_short_unemp.png ../output/short_emp.txt ../output/emp.txt ../output/unemp.txt
+all: ../output/adjusted_short_unemp.png
+>>>>>>> a2335dc17aedc0aa45ddf7bcca08f76f049ebe64
 
 $(FOLDER):
 	mkdir $@
@@ -16,6 +21,9 @@ $(FOLDER):
 	cp $< $@
 
 ../output/emp.txt: ../output/LNS12000000.txt | ../output
+<<<<<<< HEAD
+	cp $< $@ß
+=======
 	cp $< $@
 
 ../input/short_unemp_ts.txt: | ../input
@@ -27,5 +35,6 @@ short-unemp-x13.spc: sa_short_emp_from_CPSdata.py ../input/short_unemp_ts.txt
 short-unemp-x13.d11: short-unemp-x13.spc
 	x13as $(basename $@)
 
-../output/adjusted_short_unemp.png: u-v-f-s.py ../output/unemp.txt ../output/emp.txt ../output/short_emp.txt short-unemp-x13.d11 | ../output
+../output/adjusted_short_unemp.png: u-v-f-s.py ../output/unemp.txt ../output/unemp.txt ../output/short_emp.txt short-unemp-x13.d11 | ../output
 	python $<
+>>>>>>> a2335dc17aedc0aa45ddf7bcca08f76f049ebe64
