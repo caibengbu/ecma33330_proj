@@ -72,7 +72,7 @@ main_df['urate_ui'] = main_df['ssu'] / (main_df['ssu'] + main_df['sse'])
 main_df['erate_ui'] = main_df['sse'] / (main_df['ssu'] + main_df['sse'] + main_df['ssi'])
 
 for varname in ['urate_ei', 'urate_eu', 'urate_ui' , 'urate_ue', 'urate_iu', 'urate_ie']:
-    temp = main_df[['dates', varname]].to_csv(varname+'.dat')
+    temp = main_df[['dates', varname]].to_csv('../output/'+varname+'.dat')
     plt.plot(main_df['dates'], main_df[varname], label='Hypothetical from '+varname)
     plt.plot(main_df['dates'], unemp['unemp'], label='Actual unemployment rate')
     plt.legend()

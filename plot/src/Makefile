@@ -1,15 +1,12 @@
 FOLDER= ../input ../output
 INPUT=$(foreach direction, ei eu ie iu ue ui, ../input/$(direction)M_rate.txt) ../input/LNS14000000.txt
-OUTPUT=$(foreach plot_type, urate_ei urate_eu urate_ie urate_iu urate_ue urate_ui, ../output/$(plot_type).dat) $(foreach plot_type, urate_ei urate_eu urate_ie urate_iu urate_ue urate_ui, ../output/$(plot_type)_fig5.png)
+OUTPUT=$(foreach plot_type, urate_ei urate_eu urate_ie urate_iu urate_ue urate_ui, ../output/$(plot_type).dat) $(foreach plot_type, urate_ei urate_eu urate_ie urate_iu urate_ue urate_ui, ../output/fig5_$(plot_type).png)
 all: $(OUTPUT)
 
 $(FOLDER):
 	mkdir $@
 
-../output/%.dat: plot.py $(INPUT) | ../output
-	python $<
-
-../output/%_fig5.png: plot.py $(INPUT) | ../output
+../output/%.dat ../output/%_fig5.png: plot.py $(INPUT) | ../output
 	python $<
 
 ../input/LNS14000000.txt: | ../input
