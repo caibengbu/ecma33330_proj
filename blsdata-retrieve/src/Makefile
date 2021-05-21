@@ -27,5 +27,5 @@ short-unemp-x13.spc: sa_short_emp_from_CPSdata.py ../input/short_unemp_ts.txt
 short-unemp-x13.d11: short-unemp-x13.spc
 	x13as $(basename $@)
 
-../output/adjusted_short_unemp.png: u-v-f-s.py ../output/unemp.txt ../output/unemp.txt ../output/short_emp.txt short-unemp-x13.d11 | ../output
+../output/adjusted_short_unemp.png: u-v-f-s.py ../output/unemp.txt ../output/emp.txt ../output/short_emp.txt short-unemp-x13.d11 | ../output
 	python $<
