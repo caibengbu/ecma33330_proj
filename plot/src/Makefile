@@ -14,3 +14,6 @@ $(FOLDER):
 
 ../input/%M_rate.txt: | ../input
 	@if [ -e ../../three-states/output/$(@F) ] ; then ln -s ../../three-states/output/$(@F) $@ ; else exit 1; fi
+
+clean:
+	rm -rf $(FOLDER)

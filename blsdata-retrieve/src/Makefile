@@ -24,4 +24,4 @@ short-unemp-x13.d11: short-unemp-x13.spc
 clean:
 	rm -f short-unemp-x13.*
 	rm -f data.dat
-	rm -rf ../input ../output
+	rm -rf $(FOLDER)

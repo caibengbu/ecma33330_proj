@@ -29,5 +29,4 @@ $(FOLDER):
 	cat ../output/flow*_*.txt > $@
 
 clean:
-	rm -f *.log
 	rm -rf $(FOLDER)

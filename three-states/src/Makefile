@@ -12,3 +12,6 @@ $(FOLDER):
 ../input/%.txt: | ../input
 	@if [ -e ../../flow-seasonal-adjustment/output/$(@F) ] ; then ln -s ../../flow-seasonal-adjustment/output/$(@F) $@ ; else exit 1; fi
 
+clean:
+	rm -rf $(FOLDER)
+
