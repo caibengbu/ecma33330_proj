@@ -22,7 +22,4 @@ There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nbe
 Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html) does not support downloading data files older than 1994 but is more up-to-date than [NBER.org](https://data.nber.org/cps-basic2/) in terms of newly published data, we suggest using the third method.
 
 ## Environment and Prerequisite Installations
-This package is built on and tested on Stata SE 16.1 (with terminal utility), Wolframscript, and GNU Make 3.81. 
-- If you have not set up Stata terminal utility, please check out Section C.4 in this [documentation](https://www.stata.com/manuals/gsmc.pdf). 
-- If you have not set up Wolframscript on your machine, please check out their [website](https://www.wolfram.com/wolframscript/) for detailed instructions. 
-- Depending on your OS version, you might or might not have `wget` installed. We primarily use `wget` to fetch data from data sources. You can install `wget` by typing `brew install wget` in your terminal.
+This package is built on and tested on Python 3.6 and GNU Make 3.81. Depending on your OS version, you might or might not have `wget` installed. We primarily use `wget` to fetch data from data sources. You can install `wget` by typing `brew install wget` in your terminal.
