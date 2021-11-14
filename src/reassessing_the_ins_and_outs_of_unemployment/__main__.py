@@ -25,7 +25,8 @@ if __name__ == "__main__":
     elif args.dir and (not args.dir_raw):
         DIR = args.dir
     elif (not args.dir) and args.dir_raw:
-        DIR = os.path.dirname(args.dir_raw)
+        ab_path = os.path.abspath(args.dir_raw)
+        DIR = os.path.dirname(ab_path)
     else:
         DIR = "." # default is the pwd.
 
