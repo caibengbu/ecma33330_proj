@@ -1,7 +1,7 @@
 import requests
 import json
 import numpy as np
-import sys
+import os
 
 def retrieve(request_range):
     res_dict = {'LNS13000000': None,
@@ -34,26 +34,26 @@ def retrieve(request_range):
     else:
         raise NameError('Retrieve Not Successful')
 
-start_date = sys.argv[1]
-end_date = sys.argv[2]
-start_year = int(start_date[0:4])
-end_year = int(end_date[0:4])
-year_range = np.arange(start_year,end_year+1)
-request_times = len(year_range) // 10 + 1
-request_range_pertime = np.array_split(year_range,request_times)
+def retrieve_bls(start_date,end_date,theDir):
+    print("retriveing BLS data ...")
+    start_year = int(start_date[0:4])
+    end_year = int(end_date[0:4])
+    year_range = np.arange(start_year,end_year+1)
+    request_times = len(year_range) // 10 + 1
+    request_range_pertime = np.array_split(year_range,request_times)
 
-res = {'LNS13000000': [None,None],
-        'LNS12000000': [None,None],
-        'LNS13008396': [None,None],
-        'LNS14000000': [None,None]}
+    res = {'LNS13000000': [None,None],
+            'LNS12000000': [None,None],
+            'LNS13008396': [None,None],
+            'LNS14000000': [None,None]}
 
-for theRange in request_range_pertime:
-    res_temp_dict = retrieve(theRange)
+    for theRange in request_range_pertime:
+        res_temp_dict = retrieve(theRange)
+        for keyID in res:
+            res[keyID] = np.vstack((res[keyID],res_temp_dict[keyID]))
+
     for keyID in res:
-        res[keyID] = np.vstack((res[keyID],res_temp_dict[keyID]))
-
-for keyID in res:
-    data = res[keyID].astype("float64")
-    data_sorted = data[np.argsort(data[:,0])]
-    selected = (data_sorted[:,0] >= int(start_date)) & (data_sorted[:,0] <= int(end_date))
-    np.savetxt("../output/"+keyID+".txt",data_sorted[selected,:])
+        data = res[keyID].astype("float64")
+        data_sorted = data[np.argsort(data[:,0])]
+        selected = (data_sorted[:,0] >= int(start_date)) & (data_sorted[:,0] <= int(end_date))
+        np.savetxt(os.path.join(theDir,'raw', keyID+".txt"),data_sorted[selected,:])

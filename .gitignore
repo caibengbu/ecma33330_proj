@@ -5,3 +5,11 @@
 *.stpr
 *.stsem
 .DS_Store
+*.pyc
+__pycache__
+*.egg-info
+raw/
+tmp/
+figures/
+dist/
+output/
