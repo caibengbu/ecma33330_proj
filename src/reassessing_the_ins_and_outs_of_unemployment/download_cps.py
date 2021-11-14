@@ -46,7 +46,10 @@ def download_cps(start_date, end_date, theDir):
     for date in date_list:
         # Iterate through the list to download all the corresponding data
         if check_if_successfully_downloaded(theDir,date):
-            time.sleep(10)
+            if int(date) < 199401:
+                time.sleep(10) # sleep for 10 second to avoid being banned by NBER
+            else:
+                pass
         else:
             download_cps_single(date,theDir)
 

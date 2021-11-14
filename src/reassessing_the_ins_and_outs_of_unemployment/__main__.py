@@ -13,6 +13,7 @@ if __name__ == "__main__":
     parser.add_argument("--start", required=True,help="starting month, format: YYYYDD, e.g. 201201")
     parser.add_argument("--end", required=True,help="ending month, format: YYYYDD, e.g. 201201")
     parser.add_argument("--dir", required=False,help="The unit of speed used for exported statistics. (ms/kmh/mph)")
+    parser.add_argument("--quick",const=True, default=False,help='sum the integers (default: find the max)')
     args = parser.parse_args()
     START_DATE = args.start
     END_DATE = args.end
@@ -22,7 +23,11 @@ if __name__ == "__main__":
     else:
         DIR = args.dir
     
-    download_cps(START_DATE,END_DATE,DIR)
+    if args.quick:
+        pass
+    else:
+        download_cps(START_DATE,END_DATE,DIR)
+
     retrieve_bls(START_DATE,END_DATE,DIR)
     extract_all(START_DATE,END_DATE,DIR)
     match_all(START_DATE,END_DATE,DIR)
