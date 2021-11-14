@@ -13,11 +13,15 @@ python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=2021
 ```
 This command activates an analysis from January 1976 to October 2021. You can input any interval as long as there is raw data.
 
-You can also specify working directory by passing the `--dir` argument
+You can specify working directory by passing the `--dir` argument
 ```
 python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 --dir=path/to/wd
 ```
-
+You can also specify directory with downloaded raw data by passing the `--dir_raw` argument
+```
+python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 --dir_raw=path/to/raw
+```
+This automatically set the working directory to the parent directory of `path/to/raw`.
 ## Sources of Raw Data
 There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). We made available 3 possible solutions that our users can choose from:
 1. Download from NBER.org
