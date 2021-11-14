@@ -22,8 +22,8 @@ if __name__ == "__main__":
     else:
         DIR = args.dir
     
-    # download_cps(START_DATE,END_DATE,DIR)
-    # retrieve_bls(START_DATE,END_DATE,DIR)
+    download_cps(START_DATE,END_DATE,DIR)
+    retrieve_bls(START_DATE,END_DATE,DIR)
     extract_all(START_DATE,END_DATE,DIR)
     match_all(START_DATE,END_DATE,DIR)
     
