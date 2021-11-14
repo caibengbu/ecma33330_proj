@@ -9,7 +9,6 @@ setuptools.setup(
    description='A package that replicates and extends Shimer (2012) "Reassessing the ins and outs of unemployment"',
    author='Ye Sun',
    author_email='ye.sun1@sciencespo.fr',
-   packages=['reassessing_the_ins_and_outs_of_unemployment'],  #same as name
    long_description=long_description,
    long_description_content_type="text/markdown",
    url='https://github.com/caibengbu/ecma33330_proj',
