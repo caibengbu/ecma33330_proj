@@ -13,7 +13,7 @@ if __name__ == "__main__":
     parser.add_argument("--start", required=True,help="starting month, format: YYYYDD, e.g. 201201")
     parser.add_argument("--end", required=True,help="ending month, format: YYYYDD, e.g. 201201")
     parser.add_argument("--dir", required=False,help="The unit of speed used for exported statistics. (ms/kmh/mph)")
-    parser.add_argument("--quick",const=True, default=False,help='sum the integers (default: find the max)')
+    parser.add_argument("-q","--quick",const=True,default=False,action='store_const')
     args = parser.parse_args()
     START_DATE = args.start
     END_DATE = args.end
