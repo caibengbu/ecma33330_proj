@@ -22,6 +22,6 @@ setuptools.setup(
    ],
    package_dir={"": "src"},
    packages=setuptools.find_packages(where="src"),
-   install_requires=['requests', 'pandas', 'numpy', 'matplotlib', 'wheel', 'setup'], #external packages as dependencies
+   install_requires=['requests', 'pandas', 'numpy', 'matplotlib', 'wheel'], #external packages as dependencies
    python_requires=">=3.6"
 )
