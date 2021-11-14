@@ -1,4 +1,3 @@
-from src.match_sa import seasonal_adjust
 from .download_cps import download_cps
 from .blsdata_retrieve import retrieve_bls
 from .match_extract import extract_all
