@@ -28,3 +28,6 @@ Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps
 
 ## Environment and Prerequisite Installations
 This package is built on and tested on Python 3.6.
+
+## Outputs
+If executed without error, there would be an `output/` folder and a `figure/` folder. `output/` contains the monthly changing probability and chainging rate between employment status. `figure/` contains the plot in which hypothetical unemployment rate and actual unemployment rate is plotted together for comparison.
