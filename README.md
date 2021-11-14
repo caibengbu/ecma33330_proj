@@ -3,11 +3,20 @@
 This repository manages codes for replicating “Reassessing the Ins and Outs of Unemployment” (Shimer, 2012), and extends the framework using the latest data during the Covid-19 pandemic.
 
 ## How to run the package
-Shimer (2012) processed monthly CPS files from January 1976 to January 2005. You can download and analyze more recent data using our code. The default time span is January 1976 - March 2021. You can compile this package by typing
+First, install the package by pip
 ```
-python -m src start_date=197601 end_date=202110
+pip install git+https://github.com/caibengbu/ecma33330_proj.git
+```
+After it is installed, simply run
+```
+python -m reassessing_the_ins_and_outs_of_unemployment --start_date=197601 --end_date=202110
 ```
 This command activates an analysis from January 1976 to October 2021. You can input any interval as long as there is raw data.
+
+You can also specify working directory by passing the `--dir` argument
+```
+python -m reassessing_the_ins_and_outs_of_unemployment --start_date=197601 --end_date=202110 --dir=path/to/wd
+```
 
 ## Sources of Raw Data
 There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). We made available 3 possible solutions that our users can choose from:
