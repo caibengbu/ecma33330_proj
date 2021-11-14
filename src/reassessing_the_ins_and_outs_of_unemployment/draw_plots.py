@@ -6,6 +6,7 @@ from datetime import datetime
 from .other_utils import get_output_filename, get_figures_filename
 
 def plot_all(start_date,end_date,theDir):
+    print("generating plots ...")
     ei = np.loadtxt(get_output_filename(theDir,'eiM_rate.txt'), delimiter = "\t")
     eu = np.loadtxt(get_output_filename(theDir,'euM_rate.txt'), delimiter = "\t")
     ie = np.loadtxt(get_output_filename(theDir,'ieM_rate.txt'), delimiter = "\t")

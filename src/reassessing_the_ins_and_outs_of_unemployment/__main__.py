@@ -7,22 +7,28 @@ from .match_sa import seasonal_adjust
 from .three_state import three_state
 from .draw_plots import plot_all
 import argparse
+import os
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--start", required=True,help="starting month, format: YYYYDD, e.g. 201201")
     parser.add_argument("--end", required=True,help="ending month, format: YYYYDD, e.g. 201201")
-    parser.add_argument("--dir", required=False,help="The unit of speed used for exported statistics. (ms/kmh/mph)")
+    parser.add_argument("--dir", required=False,help="path to the working directory")
+    parser.add_argument("--dir_raw", required=False,help="path to the raw directory")
     parser.add_argument("-q","--quick",const=True,default=False,action='store_const')
     args = parser.parse_args()
     START_DATE = args.start
     END_DATE = args.end
-
-    if args.dir is None:
-        DIR = "."
-    else:
-        DIR = args.dir
     
+    if args.dir and args.dir_raw:
+        raise ValueError("Please only assign the directory to the raw data or the working directory")
+    elif args.dir and (not args.dir_raw):
+        DIR = args.dir
+    elif (not args.dir) and args.dir_raw:
+        DIR = os.path.dirname(args.dir_raw)
+    else:
+        DIR = "." # default is the pwd.
+
     if args.quick:
         pass
     else:

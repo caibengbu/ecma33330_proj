@@ -2,6 +2,7 @@ import numpy as np
 from .other_utils import get_output_filename
 
 def three_state(df_sa,theDir):
+    print("computing the transitional rate ...")
     ei = df_sa.ei.values
     eu = df_sa.eu.values
     ie = df_sa.ie.values

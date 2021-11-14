@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 def seasonal_adjust(df):
+    print("seasonal adjusting ...")
     df['flowsEE'] = df.flowEE/(df.flowEE+df.flowEI+df.flowEU)
     df['flowsEI'] = df.flowEI/(df.flowEE+df.flowEI+df.flowEU)
     df['flowsEU'] = df.flowEU/(df.flowEE+df.flowEI+df.flowEU)
