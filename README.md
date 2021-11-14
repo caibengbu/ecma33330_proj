@@ -9,13 +9,13 @@ pip install git+https://github.com/caibengbu/ecma33330_proj.git
 ```
 After it is installed, simply run
 ```
-python -m reassessing_the_ins_and_outs_of_unemployment --start_date=197601 --end_date=202110
+python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110
 ```
 This command activates an analysis from January 1976 to October 2021. You can input any interval as long as there is raw data.
 
 You can also specify working directory by passing the `--dir` argument
 ```
-python -m reassessing_the_ins_and_outs_of_unemployment --start_date=197601 --end_date=202110 --dir=path/to/wd
+python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 --dir=path/to/wd
 ```
 
 ## Sources of Raw Data
@@ -28,3 +28,6 @@ Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps
 
 ## Environment and Prerequisite Installations
 This package is built on and tested on Python 3.6.
+
+## Outputs
+If executed without error, there would be an `output/` folder and a `figure/` folder. `output/` contains the monthly changing probability and chainging rate between employment status. `figure/` contains the plot in which hypothetical unemployment rate and actual unemployment rate is plotted together for comparison.
