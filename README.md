@@ -26,7 +26,7 @@ This automatically set the working directory to the parent directory of `path/to
 There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html) does not support downloading data files older than 1994 but is more up-to-date than [NBER.org](https://data.nber.org/cps-basic2/) in terms of newly published data, we download CPS Basic data older than 1994 from NBER and newer ones from Census.
 
 ## Environment and Prerequisite Installations
-This package is built on and tested on Python 3.6. It is OS independent, tested on MacOS 10.15.7 and Windows 10. In order to retrieve and install the package, `pip` is required.
+This package is built on and tested on Python 3.6. It is OS independent, tested on MacOS 10.15.7 and Windows 10. In order to retrieve and install the package, `pip` is required. No other manual installation is needed.
 
 ## Outputs
 If executed without error, there would be an `output/` folder and a `figure/` folder. `output/` contains the monthly transitional probability and transitional rate between employment status. `figure/` contains the plot in which hypothetical unemployment rate and actual unemployment rate is plotted together for comparison.
