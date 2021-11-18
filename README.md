@@ -23,15 +23,10 @@ python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=2021
 ```
 This automatically set the working directory to the parent directory of `path/to/raw`.
 ## Sources of Raw Data
-There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). We made available 3 possible solutions that our users can choose from:
-1. Download from NBER.org
-2. Download from Census.gov
-3. Download from a mixture of NBER.org (for files earlier than 1994) and Census.gov (for files later than 1994). 
-
-Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html) does not support downloading data files older than 1994 but is more up-to-date than [NBER.org](https://data.nber.org/cps-basic2/) in terms of newly published data, we suggest using the third method.
+There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html) does not support downloading data files older than 1994 but is more up-to-date than [NBER.org](https://data.nber.org/cps-basic2/) in terms of newly published data, we download CPS Basic data older than 1994 from NBER and newer ones from Census.
 
 ## Environment and Prerequisite Installations
-This package is built on and tested on Python 3.6.
+This package is built on and tested on Python 3.6. It is OS independent, tested on MacOS 10.15.7 and Windows 10. 
 
 ## Outputs
 If executed without error, there would be an `output/` folder and a `figure/` folder. `output/` contains the monthly transitional probability and transitional rate between employment status. `figure/` contains the plot in which hypothetical unemployment rate and actual unemployment rate is plotted together for comparison.
