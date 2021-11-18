@@ -23,7 +23,7 @@ python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=2021
 ```
 This automatically set the working directory to the parent directory of `path/to/raw`.
 
-### The `-q` argument.
+### The `-q` argument
 When the raw data is pre-downloaded and one wants to skip checking the completeness of the files, the `-q` argument can be added to avoid automated download and checking.
 ```
 python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 -q
