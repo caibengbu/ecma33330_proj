@@ -22,6 +22,13 @@ You can also specify directory with downloaded raw data by passing the `--dir_ra
 python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 --dir_raw=path/to/raw
 ```
 This automatically set the working directory to the parent directory of `path/to/raw`.
+
+### The `-q` argument.
+When the raw data is pre-downloaded and one wants to skip checking the completeness of the files, the `-q` argument can be added to avoid automated download and checking.
+```
+python -m reassessing_the_ins_and_outs_of_unemployment --start=197601 --end=202110 -q
+```
+
 ## Sources of Raw Data
 There are two sources of raw CPS Basic Monthly data: [NBER.org](https://data.nber.org/cps-basic2/) and [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html). Since [Census.gov](https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html) does not support downloading data files older than 1994 but is more up-to-date than [NBER.org](https://data.nber.org/cps-basic2/) in terms of newly published data, we download CPS Basic data older than 1994 from NBER and newer ones from Census.
 
